@@ -14,12 +14,18 @@ class _MainActivityState extends State<MainActivity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: const [
-        Text(
-          "Dashboard",
-          style: AppTextStyles.displayLarge,
-        ),
-      ]),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.filter_alt),
+      ),
+      body: SafeArea(
+        child: Column(children: [
+          Text(
+            "Dashboard",
+            style: Theme.of(context).textTheme.displayLarge,
+          ),
+        ]),
+      ),
     );
   }
 }
