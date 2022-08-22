@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:sih/config/theme.dart';
 import 'package:sih/view/main_activity.dart';
-import 'package:sih/widgets/app_bar.dart';
 
 void main() {
   runApp(const MyApp());
