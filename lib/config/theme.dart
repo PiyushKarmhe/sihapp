@@ -6,9 +6,9 @@ class AppTheme {
 
   // Light theme
   static final ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: AppColor.lightBlue,
+    scaffoldBackgroundColor: AppColor.white,
     colorScheme: const ColorScheme.light(
-      primary: AppColor.lightBlue,
+      primary: AppColor.yellow,
       onPrimary: Colors.black,
       secondary: AppColor.lightBlue,
     ),
