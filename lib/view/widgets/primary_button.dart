@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:sih/config/colors.dart';
 
 class PrimaryButton extends StatelessWidget {
   final onTap;
@@ -8,12 +9,15 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final totalWidth = MediaQuery.of(context).size.height;
     return MaterialButton(
-        child: Text(
+        child: const Text(
           "Apply",
-          style: Theme.of(context).textTheme.button,
+          style: TextStyle(
+              color: AppColor.black, fontSize: 16, fontWeight: FontWeight.w700),
         ),
-        minWidth: 200,
+        height: 50,
+        minWidth: totalWidth * 0.3,
         color: Theme.of(context).colorScheme.primary,
         shape: Theme.of(context).buttonTheme.shape,
         onPressed: onTap);

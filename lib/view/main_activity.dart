@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:sih/config/colors.dart';
 import 'package:sih/controller/data_controller.dart';
+import 'package:sih/view/widgets/filter_container.dart';
 import 'package:sih/view/widgets/primary_button.dart';
 import 'package:sih/view/widgets/primary_card.dart';
 
@@ -48,38 +49,85 @@ class _MainActivityState extends State<MainActivity> {
         ),
         SafeArea(
           child: SingleChildScrollView(
-            child: Column(children: [
-              SizedBox(
-                width: totalWidth,
-                height: totalHeight * 0.1,
-              ),
-              Text(
-                "Apply Filters",
-                style: Theme.of(context).textTheme.displayLarge,
-              ),
-              SizedBox(
-                height: totalHeight * 0.05,
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-                child: Align(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(children: [
+                SizedBox(
+                  width: totalWidth,
+                  height: totalHeight * 0.1,
+                ),
+                Text(
+                  "Apply Filters",
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
+                SizedBox(
+                  height: totalHeight * 0.05,
+                ),
+                Align(
                   alignment: Alignment.topLeft,
                   child: Text(
                     "Year",
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
-              ),
-              PrimaryButton(onTap: () {
-                setState(() {
-                  showFilter.value = !showFilter.value;
-                });
-              }),
-              const SizedBox(
-                height: 50,
-              )
-            ]),
+                const FilterContainer(
+                    child: SizedBox(
+                      width: 100,
+                      height: 30,
+                    ),
+                    color: AppColor.red),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Program",
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+                const FilterContainer(
+                    child: SizedBox(
+                      width: 100,
+                      height: 30,
+                    ),
+                    color: AppColor.purple),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Level",
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+                const FilterContainer(
+                    child: SizedBox(
+                      width: 100,
+                      height: 30,
+                    ),
+                    color: AppColor.green),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Institution Type",
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+                const FilterContainer(
+                    child: SizedBox(
+                      width: 100,
+                      height: 30,
+                    ),
+                    color: AppColor.pink),
+                const SizedBox(
+                  height: 16,
+                ),
+                PrimaryButton(onTap: () {
+                  setState(() {
+                    showFilter.value = !showFilter.value;
+                  });
+                }),
+                const SizedBox(
+                  height: 50,
+                )
+              ]),
+            ),
           ),
         ),
       ],

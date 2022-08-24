@@ -64,7 +64,7 @@ class AppTheme {
       color: Colors.white54,
     ),
     buttonTheme: ButtonThemeData(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14))),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
     textTheme: const TextTheme(
         displayLarge: TextStyle(
           color: Color(0xFFD4D8E3),
