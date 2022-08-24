@@ -34,11 +34,23 @@ class PrimaryCard extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(25),
-              child: SvgPicture.asset(
-                "assets/components/Intersect.svg",
-                height: 100,
-                color: color,
-                colorBlendMode: BlendMode.dstATop,
+              child: Stack(
+                children: [
+                  SvgPicture.asset(
+                    "assets/components/Intersect.svg",
+                    height: 100,
+                    color: color,
+                    colorBlendMode: BlendMode.dstATop,
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 20, horizontal: 25),
+                      child: Icon(
+                        icon,
+                        size: 40,
+                        color: Colors.white,
+                      ))
+                ],
               ),
             ),
           ),
