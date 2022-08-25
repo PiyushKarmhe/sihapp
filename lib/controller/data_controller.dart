@@ -16,7 +16,7 @@ class DataController extends GetxController {
       "New Institute",
       "132",
       Icons.home,
-      AppColor.lightBlue,
+      AppColor.pink,
     ),
     const DashboardData(
       "Total Institute",
