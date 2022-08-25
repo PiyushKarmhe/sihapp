@@ -34,11 +34,10 @@ class _MainActivityState extends State<MainActivity> {
         height: totalHeight,
         width: totalWidth,
         decoration: BoxDecoration(
-            color: AppColor.white,
             gradient: RadialGradient(colors: [
-              AppColor.grad1,
-              AppColor.grad2,
-            ], radius: 2, center: Alignment.topRight)),
+          AppColor.grad1,
+          AppColor.grad2,
+        ], radius: 2, center: Alignment.topRight)),
       ),
       Obx(
         () => (!showFilter.value)
@@ -249,16 +248,22 @@ class _MainActivityState extends State<MainActivity> {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
-                    return SafeArea(
-                      child: Center(
-                        child: SingleChildScrollView(
-                          physics: const BouncingScrollPhysics(),
-                          child: Column(children: [
-                            if (_filterController
-                                .selectedYears.value.isNotEmpty) ...[
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 32, vertical: 16),
+                    final _megaList = _filterController.selectedYears +
+                        _filterController.selectedProgram +
+                        _filterController.selectedLevel +
+                        _filterController.selectedInstType;
+
+                    return Center(
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        child: Column(children: [
+                          if (_megaList.isNotEmpty) ...[
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 32, vertical: 16),
+                              child: SingleChildScrollView(
+                                physics: const BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
                                 child: Row(
                                   children: [
                                     for (var every in _filterController
@@ -271,30 +276,54 @@ class _MainActivityState extends State<MainActivity> {
                                             borderRadius:
                                                 BorderRadius.circular(25),
                                             color: AppColor.yellow),
-                                        child: Text(
-                                          every,
-                                          style: const TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w700),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Text(
+                                              every,
+                                              style: const TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w700),
+                                            ),
+                                            Icon(
+                                              Icons.close,
+                                              color: AppColor.black,
+                                              size: 20,
+                                            )
+                                          ],
                                         ),
                                       )
                                     ]
                                   ],
                                 ),
-                              )
-                            ],
-                            for (var each in _dataController.data) ...[
-                              PrimaryCard(
-                                  title: each.title,
-                                  value: each.value,
-                                  icon: each.icon,
-                                  color: each.color)
-                            ],
-                            SizedBox(
-                              height: totalHeight * 0.2,
+                              ),
                             )
-                          ]),
-                        ),
+                          ],
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: GridView.count(
+                              physics: const BouncingScrollPhysics(),
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 10,
+                              crossAxisSpacing: 10,
+                              childAspectRatio: 1.4,
+                              shrinkWrap: true,
+                              children: [
+                                for (var each in _dataController.data) ...[
+                                  PrimaryCard(
+                                      title: each.title,
+                                      value: each.value,
+                                      icon: each.icon,
+                                      color: each.color)
+                                ],
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: totalHeight * 0.2,
+                          )
+                        ]),
                       ),
                     );
                   }, childCount: 1),

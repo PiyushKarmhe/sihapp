@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sih/config/colors.dart';
 
 class PrimaryCard extends StatelessWidget {
   final title;
@@ -25,11 +22,10 @@ class PrimaryCard extends StatelessWidget {
       alignment: Alignment.topCenter,
       children: [
         Container(
-          margin: const EdgeInsets.all(8),
           decoration: BoxDecoration(
               color: color, borderRadius: BorderRadius.circular(25)),
-          width: totalWidth * 0.85,
-          height: 150,
+          //   width: totalWidth * 0.85,
+
           child: Align(
             alignment: Alignment.topLeft,
             child: ClipRRect(
@@ -44,10 +40,10 @@ class PrimaryCard extends StatelessWidget {
                   ),
                   Padding(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 20, horizontal: 25),
+                          vertical: 10, horizontal: 10),
                       child: Icon(
                         icon,
-                        size: 40,
+                        size: 30,
                         color: Colors.white,
                       ))
                 ],
@@ -57,14 +53,14 @@ class PrimaryCard extends StatelessWidget {
         ),
         Column(children: [
           const SizedBox(
-            height: 60,
+            height: 45,
           ),
           Text(
             title,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(
-            height: 10,
+            height: 8,
           ),
           Text(
             value,

@@ -39,12 +39,12 @@ class AppTheme {
         ),
         titleMedium: TextStyle(
           color: Colors.white,
-          fontSize: 22,
+          fontSize: 20,
           fontWeight: FontWeight.w900,
         ),
         titleLarge: TextStyle(
           color: Colors.white,
-          fontSize: 31,
+          fontSize: 28,
           fontWeight: FontWeight.w900,
         )),
   );
@@ -84,12 +84,12 @@ class AppTheme {
         ),
         titleMedium: TextStyle(
           color: AppColor.white,
-          fontSize: 22,
+          fontSize: 20,
           fontWeight: FontWeight.w900,
         ),
         titleLarge: TextStyle(
           color: Colors.white,
-          fontSize: 31,
+          fontSize: 28,
           fontWeight: FontWeight.w900,
         )),
   );
