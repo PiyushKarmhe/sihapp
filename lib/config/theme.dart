@@ -24,7 +24,7 @@ class AppTheme {
     textTheme: const TextTheme(
         displayLarge: TextStyle(
           color: AppColor.darkBlue,
-          fontSize: 28.0,
+          fontSize: 20.0,
           fontWeight: FontWeight.w900,
         ),
         displayMedium: TextStyle(
@@ -68,7 +68,7 @@ class AppTheme {
     textTheme: const TextTheme(
         displayLarge: TextStyle(
           color: Color(0xFFD4D8E3),
-          fontSize: 28.0,
+          fontSize: 20.0,
           fontWeight: FontWeight.w900,
         ),
         displayMedium: TextStyle(
@@ -81,7 +81,7 @@ class AppTheme {
           fontSize: 22,
         ),
         titleMedium: TextStyle(
-          color: Colors.white,
+          color: AppColor.white,
           fontSize: 22,
           fontWeight: FontWeight.w900,
         ),

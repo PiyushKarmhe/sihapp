@@ -134,62 +134,88 @@ class _MainActivityState extends State<MainActivity> {
     ));
   }
 
-  Scaffold dashBoard(
+  Widget dashBoard(
       double totalHeight, double totalWidth, BuildContext context) {
     log("Dashboard");
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColor.white,
-        onPressed: () {
-          setState(() {
-            showFilter.value = !showFilter.value;
-          });
-        },
-        child: const Icon(
-          Icons.filter_alt,
-          size: 30,
-          color: AppColor.darkYellow,
-        ),
-      ),
-      body: Stack(
-        children: [
-          Positioned(
-            top: -totalHeight * 0.1,
-            left: -totalWidth * 0.42,
-            child: SvgPicture.asset(
-              "assets/components/Frame.svg",
-              height: totalHeight * 0.3,
-              color: Theme.of(context).secondaryHeaderColor.withOpacity(0.8),
-            ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: AppColor.white,
+          onPressed: () {
+            setState(() {
+              showFilter.value = !showFilter.value;
+            });
+          },
+          child: const Icon(
+            Icons.filter_alt,
+            size: 30,
+            color: AppColor.darkYellow,
           ),
-          SafeArea(
-            child: Center(
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Column(children: [
-                  SizedBox(
-                    height: 0.05 * totalHeight,
-                  ),
-                  Text(
-                    "Dashboard",
-                    style: Theme.of(context).textTheme.displayLarge,
-                  ),
-                  const SizedBox(
-                    height: 60,
-                  ),
-                  for (var each in _dataController.data) ...[
-                    PrimaryCard(
-                        title: each.title,
-                        value: each.value,
-                        icon: each.icon,
-                        color: each.color)
-                  ]
-                ]),
+        ),
+        body: Stack(
+          children: [
+            Positioned(
+              top: -totalHeight * 0.1,
+              left: -totalWidth * 0.42,
+              child: SvgPicture.asset(
+                "assets/components/Frame.svg",
+                height: totalHeight * 0.3,
+                color: Theme.of(context).secondaryHeaderColor.withOpacity(0.8),
               ),
             ),
-          ),
-        ],
-      ),
-    );
+            CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  expandedHeight: 200.0,
+                  floating: true,
+                  snap: false,
+                  pinned: false,
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
+                  flexibleSpace: FlexibleSpaceBar(
+                    title: Text(
+                      'Dashboard',
+                      style: Theme.of(context).textTheme.displayLarge,
+                    ),
+                    centerTitle: true,
+                    background: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset(
+                          "assets/logo.png",
+                          height: 100,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                    return SafeArea(
+                      child: Center(
+                        child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          child: Column(children: [
+                            for (var each in _dataController.data) ...[
+                              PrimaryCard(
+                                  title: each.title,
+                                  value: each.value,
+                                  icon: each.icon,
+                                  color: each.color)
+                            ],
+                            SizedBox(
+                              height: totalHeight * 0.2,
+                            )
+                          ]),
+                        ),
+                      ),
+                    );
+                  }, childCount: 1),
+                ),
+              ],
+            ),
+          ],
+        ));
   }
 }
