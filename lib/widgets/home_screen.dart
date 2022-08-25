@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'palette.dart';
-import 'widgets.dart'; //TODO add one export when needed bar chart
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,15 +16,16 @@ class _HomeScreenState extends State<HomeScreen> {
       height: 490,
       child: Scaffold(
         //appBar: CustomAppBar(),
-        body: CustomScrollView( //TODO change to single child and remove sliver for single screen
-            //physics: const ClampingScrollPhysics(),
-            slivers: <Widget>[
-              //_buildHeader(screenHeight),
-              //_buildTextFeildHeadder(screenHeight),
-              _buildTextFeild(),
-            ],
-          ),
+        body: CustomScrollView(
+          //TODO change to single child and remove sliver for single screen
+          //physics: const ClampingScrollPhysics(),
+          slivers: <Widget>[
+            //_buildHeader(screenHeight),
+            //_buildTextFeildHeadder(screenHeight),
+            _buildTextFeild(),
+          ],
         ),
+      ),
     );
   }
 
@@ -161,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
               border: OutlineInputBorder(),
               labelText: 'Total Intake',
               isDense: true, // Added this
-             // contentPadding: EdgeInsets.all(8), // Added this
+              // contentPadding: EdgeInsets.all(8), // Added this
             ),
           ),
         ],

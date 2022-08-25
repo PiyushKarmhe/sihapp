@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sih/widgets/app_bar.dart';
+import 'package:sih/config/theme.dart';
+import 'package:sih/view/main_activity.dart';
 
-void main(){
+void main() {
   runApp(const MyApp());
 }
 
@@ -10,7 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        home: CustomSliverAppBar());
+    return MaterialApp(
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      home: MainActivity(),
+    );
   }
 }
