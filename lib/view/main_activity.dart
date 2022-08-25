@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:sih/config/colors.dart';
 import 'package:sih/controller/data_controller.dart';
+import 'package:sih/controller/tab_controller.dart';
 import 'package:sih/view/widgets/filter_container.dart';
 import 'package:sih/view/widgets/primary_button.dart';
 import 'package:sih/view/widgets/primary_card.dart';
@@ -17,12 +18,21 @@ RxBool showFilter = false.obs;
 class MainActivity extends StatefulWidget {
   MainActivity({Key? key}) : super(key: key);
   @override
-  State<MainActivity> createState() => _MainActivityState();
+  _MainActivityState createState() => _MainActivityState();
 }
 
-class _MainActivityState extends State<MainActivity> {
+class _MainActivityState extends State with SingleTickerProviderStateMixin {
   final _dataController = Get.put(DataController());
   final _filterController = Get.put(FilterController());
+  final _tabController = AppTabController();
+  late dynamic _tabx;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _tabx = _tabController.init();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -266,8 +276,7 @@ class _MainActivityState extends State<MainActivity> {
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
                                   children: [
-                                    for (var every in _filterController
-                                        .selectedYears.value) ...[
+                                    for (var every in _megaList) ...[
                                       Container(
                                         margin: const EdgeInsets.all(8),
                                         padding: const EdgeInsets.symmetric(
@@ -286,10 +295,13 @@ class _MainActivityState extends State<MainActivity> {
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w700),
                                             ),
-                                            Icon(
-                                              Icons.close,
-                                              color: AppColor.black,
-                                              size: 20,
+                                            GestureDetector(
+                                              onTap: () {},
+                                              child: const Icon(
+                                                Icons.close,
+                                                color: AppColor.black,
+                                                size: 20,
+                                              ),
                                             )
                                           ],
                                         ),
@@ -302,22 +314,55 @@ class _MainActivityState extends State<MainActivity> {
                           ],
                           Padding(
                             padding: const EdgeInsets.all(12.0),
-                            child: GridView.count(
-                              physics: const BouncingScrollPhysics(),
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 10,
-                              crossAxisSpacing: 10,
-                              childAspectRatio: 1.4,
-                              shrinkWrap: true,
-                              children: [
-                                for (var each in _dataController.data) ...[
-                                  PrimaryCard(
-                                      title: each.title,
-                                      value: each.value,
-                                      icon: each.icon,
-                                      color: each.color)
+                            child: DefaultTabController(
+                              length: 2,
+                              child: Column(
+                                children: [
+                                  TabBar(
+                                    labelColor:
+                                        Theme.of(context).colorScheme.onPrimary,
+                                    controller: _tabx,
+                                    isScrollable: true,
+                                    physics: const BouncingScrollPhysics(),
+                                    labelStyle: Theme.of(context)
+                                        .textTheme
+                                        .displayLarge,
+                                    indicator: UnderlineTabIndicator(
+                                      insets: const EdgeInsets.symmetric(
+                                          horizontal: 20),
+                                      borderSide: BorderSide(
+                                        width: 2,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
+                                    ),
+                                    tabs: _tabController.tabs
+                                        .map((e) => Tab(
+                                              text: e,
+                                            ))
+                                        .toList(),
+                                  ),
+                                  GridView.count(
+                                    physics: const BouncingScrollPhysics(),
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 10,
+                                    crossAxisSpacing: 10,
+                                    childAspectRatio: 1.4,
+                                    shrinkWrap: true,
+                                    children: [
+                                      for (var each
+                                          in _dataController.data) ...[
+                                        PrimaryCard(
+                                            title: each.title,
+                                            value: each.value,
+                                            icon: each.icon,
+                                            color: each.color)
+                                      ],
+                                    ],
+                                  ),
                                 ],
-                              ],
+                              ),
                             ),
                           ),
                           SizedBox(

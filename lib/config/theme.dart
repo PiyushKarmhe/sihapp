@@ -34,13 +34,13 @@ class AppTheme {
         ),
         titleSmall: TextStyle(
           color: Colors.black,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w500,
           fontSize: 22,
         ),
         titleMedium: TextStyle(
           color: Colors.white,
           fontSize: 20,
-          fontWeight: FontWeight.w900,
+          fontWeight: FontWeight.w800,
         ),
         titleLarge: TextStyle(
           color: Colors.white,
@@ -79,13 +79,13 @@ class AppTheme {
         ),
         titleSmall: TextStyle(
           color: Colors.white,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w500,
           fontSize: 22,
         ),
         titleMedium: TextStyle(
           color: AppColor.white,
           fontSize: 20,
-          fontWeight: FontWeight.w900,
+          fontWeight: FontWeight.w800,
         ),
         titleLarge: TextStyle(
           color: Colors.white,
