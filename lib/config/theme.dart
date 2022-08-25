@@ -6,7 +6,7 @@ class AppTheme {
 
   // Light theme
   static final ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: AppColor.white,
+    scaffoldBackgroundColor: Colors.transparent,
     colorScheme: const ColorScheme.light(
       primary: AppColor.yellow,
       onPrimary: Colors.black,
@@ -20,7 +20,7 @@ class AppTheme {
       color: Colors.white54,
     ),
     buttonTheme: ButtonThemeData(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
     secondaryHeaderColor: AppColor.lightBlue,
     textTheme: const TextTheme(
         displayLarge: TextStyle(
@@ -51,7 +51,7 @@ class AppTheme {
 
   // Dark theme
   static final ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: AppColor.black,
+    scaffoldBackgroundColor: Colors.transparent,
     colorScheme: const ColorScheme.light(
       primary: AppColor.yellow,
       onPrimary: AppColor.white,
@@ -66,7 +66,7 @@ class AppTheme {
       color: Colors.white54,
     ),
     buttonTheme: ButtonThemeData(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
     textTheme: const TextTheme(
         displayLarge: TextStyle(
           color: Color(0xFFD4D8E3),

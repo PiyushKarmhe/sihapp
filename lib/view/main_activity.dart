@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,8 @@ import 'package:sih/controller/data_controller.dart';
 import 'package:sih/view/widgets/filter_container.dart';
 import 'package:sih/view/widgets/primary_button.dart';
 import 'package:sih/view/widgets/primary_card.dart';
+
+import '../controller/filter_controller.dart';
 
 RxBool showFilter = false.obs;
 
@@ -19,12 +22,24 @@ class MainActivity extends StatefulWidget {
 
 class _MainActivityState extends State<MainActivity> {
   final _dataController = Get.put(DataController());
+  final _filterController = Get.put(FilterController());
+
   @override
   Widget build(BuildContext context) {
     final totalHeight = MediaQuery.of(context).size.height;
     final totalWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         body: Stack(children: [
+      Container(
+        height: totalHeight,
+        width: totalWidth,
+        decoration: BoxDecoration(
+            color: AppColor.white,
+            gradient: RadialGradient(colors: [
+              AppColor.grad1,
+              AppColor.grad2,
+            ], radius: 2, center: Alignment.topRight)),
+      ),
       Obx(
         () => (!showFilter.value)
             ? dashBoard(totalHeight, totalWidth, context)
@@ -70,12 +85,12 @@ class _MainActivityState extends State<MainActivity> {
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
-                const FilterContainer(
-                    child: SizedBox(
-                      width: 100,
-                      height: 30,
-                    ),
-                    color: AppColor.red),
+                FilterContainer(
+                  color: AppColor.red,
+                  labelList: _filterController.yearList,
+                  selected: _filterController.selectedYears,
+                  horizontal: false,
+                ),
                 Align(
                   alignment: Alignment.topLeft,
                   child: Text(
@@ -83,12 +98,12 @@ class _MainActivityState extends State<MainActivity> {
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
-                const FilterContainer(
-                    child: SizedBox(
-                      width: 100,
-                      height: 30,
-                    ),
-                    color: AppColor.purple),
+                FilterContainer(
+                  color: AppColor.purple,
+                  labelList: _filterController.programList,
+                  selected: _filterController.selectedProgram,
+                  horizontal: true,
+                ),
                 Align(
                   alignment: Alignment.topLeft,
                   child: Text(
@@ -96,12 +111,12 @@ class _MainActivityState extends State<MainActivity> {
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
-                const FilterContainer(
-                    child: SizedBox(
-                      width: 100,
-                      height: 30,
-                    ),
-                    color: AppColor.green),
+                FilterContainer(
+                  color: AppColor.green,
+                  labelList: _filterController.levelList,
+                  selected: _filterController.selectedLevel,
+                  horizontal: false,
+                ),
                 Align(
                   alignment: Alignment.topLeft,
                   child: Text(
@@ -109,27 +124,36 @@ class _MainActivityState extends State<MainActivity> {
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
-                const FilterContainer(
-                    child: SizedBox(
-                      width: 100,
-                      height: 30,
-                    ),
-                    color: AppColor.pink),
-                const SizedBox(
-                  height: 16,
+                FilterContainer(
+                  color: AppColor.pink,
+                  labelList: _filterController.instTypeList,
+                  selected: _filterController.selectedInstType,
+                  horizontal: true,
                 ),
-                PrimaryButton(onTap: () {
-                  setState(() {
-                    showFilter.value = !showFilter.value;
-                  });
-                }),
                 const SizedBox(
-                  height: 50,
+                  height: 150,
                 )
               ]),
             ),
           ),
         ),
+        Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                  vertical: 20, horizontal: totalWidth * 0.2),
+              color: Theme.of(context).colorScheme.onBackground,
+              width: totalWidth,
+              child: PrimaryButton(onTap: () {
+                setState(() {
+                  print("Selected Institute types" +
+                      _filterController.selectedInstType.toString());
+                  print("Selected Program" +
+                      _filterController.selectedProgram.toString());
+                  showFilter.value = !showFilter.value;
+                });
+              }),
+            )),
       ],
     ));
   }
@@ -165,9 +189,8 @@ class _MainActivityState extends State<MainActivity> {
             CustomScrollView(
               slivers: [
                 SliverAppBar(
-                  expandedHeight: 200.0,
-                  floating: true,
-                  snap: false,
+                  expandedHeight: 180.0,
+                  floating: false,
                   pinned: false,
                   elevation: 0,
                   backgroundColor: Colors.transparent,
@@ -231,6 +254,35 @@ class _MainActivityState extends State<MainActivity> {
                         child: SingleChildScrollView(
                           physics: const BouncingScrollPhysics(),
                           child: Column(children: [
+                            if (_filterController
+                                .selectedYears.value.isNotEmpty) ...[
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 32, vertical: 16),
+                                child: Row(
+                                  children: [
+                                    for (var every in _filterController
+                                        .selectedYears.value) ...[
+                                      Container(
+                                        margin: const EdgeInsets.all(8),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 6),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                            color: AppColor.yellow),
+                                        child: Text(
+                                          every,
+                                          style: const TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w700),
+                                        ),
+                                      )
+                                    ]
+                                  ],
+                                ),
+                              )
+                            ],
                             for (var each in _dataController.data) ...[
                               PrimaryCard(
                                   title: each.title,
