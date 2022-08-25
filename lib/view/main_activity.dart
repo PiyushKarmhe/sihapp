@@ -181,9 +181,43 @@ class _MainActivityState extends State<MainActivity> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Image.asset(
-                          "assets/logo.png",
-                          height: 100,
+                        Container(
+                          height: 120,
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondaryContainer,
+                            boxShadow: [
+                              BoxShadow(
+                                color:
+                                    const Color(0xFF000000).withOpacity(0.25),
+                                spreadRadius: 0,
+                                blurRadius: 4,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          child: Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColor.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color:
+                                      const Color(0xFF000000).withOpacity(0.25),
+                                  spreadRadius: 0,
+                                  blurRadius: 4,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: Image.asset(
+                              "assets/logo.png",
+                            ),
+                          ),
                         ),
                       ],
                     ),

@@ -11,6 +11,7 @@ class AppTheme {
       primary: AppColor.yellow,
       onPrimary: Colors.black,
       secondary: AppColor.lightBlue,
+      secondaryContainer: AppColor.lightBlue1,
     ),
     cardTheme: const CardTheme(
       color: Colors.teal,
@@ -55,6 +56,7 @@ class AppTheme {
       primary: AppColor.yellow,
       onPrimary: AppColor.white,
       secondary: AppColor.lightBlue,
+      secondaryContainer: AppColor.grey,
     ),
     secondaryHeaderColor: AppColor.grey,
     cardTheme: const CardTheme(
