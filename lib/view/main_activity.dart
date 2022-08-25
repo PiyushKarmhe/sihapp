@@ -21,16 +21,18 @@ class MainActivity extends StatefulWidget {
   _MainActivityState createState() => _MainActivityState();
 }
 
-class _MainActivityState extends State with SingleTickerProviderStateMixin {
+class _MainActivityState extends State with TickerProviderStateMixin {
   final _dataController = Get.put(DataController());
   final _filterController = Get.put(FilterController());
-  final _tabController = AppTabController();
-  late dynamic _tabx;
+  final controller = AnalysisPageController();
 
   @override
   void initState() {
     // TODO: implement initState
-    _tabx = _tabController.init();
+    controller.tabController = TabController(
+      length: 2,
+      vsync: this,
+    );
     super.initState();
   }
 
@@ -321,7 +323,7 @@ class _MainActivityState extends State with SingleTickerProviderStateMixin {
                                   TabBar(
                                     labelColor:
                                         Theme.of(context).colorScheme.onPrimary,
-                                    controller: _tabx,
+                                    controller: controller.tabController,
                                     isScrollable: true,
                                     physics: const BouncingScrollPhysics(),
                                     labelStyle: Theme.of(context)
@@ -337,30 +339,45 @@ class _MainActivityState extends State with SingleTickerProviderStateMixin {
                                             .primary,
                                       ),
                                     ),
-                                    tabs: _tabController.tabs
+                                    tabs: controller.tabs
                                         .map((e) => Tab(
                                               text: e,
                                             ))
                                         .toList(),
                                   ),
-                                  GridView.count(
-                                    physics: const BouncingScrollPhysics(),
-                                    crossAxisCount: 2,
-                                    mainAxisSpacing: 10,
-                                    crossAxisSpacing: 10,
-                                    childAspectRatio: 1.4,
-                                    shrinkWrap: true,
-                                    children: [
-                                      for (var each
-                                          in _dataController.data) ...[
-                                        PrimaryCard(
-                                            title: each.title,
-                                            value: each.value,
-                                            icon: each.icon,
-                                            color: each.color)
-                                      ],
-                                    ],
-                                  ),
+                                  SizedBox(
+                                      height: totalHeight,
+                                      width: totalWidth,
+                                      child: TabBarView(
+                                          controller: controller.tabController,
+                                          physics:
+                                              const BouncingScrollPhysics(),
+                                          children: <Widget>[
+                                            GridView.count(
+                                              physics:
+                                                  const BouncingScrollPhysics(),
+                                              crossAxisCount: 2,
+                                              mainAxisSpacing: 10,
+                                              crossAxisSpacing: 10,
+                                              childAspectRatio: 1.4,
+                                              shrinkWrap: true,
+                                              children: [
+                                                for (var each in _dataController
+                                                    .data) ...[
+                                                  PrimaryCard(
+                                                      title: each.title,
+                                                      value: each.value,
+                                                      icon: each.icon,
+                                                      color: each.color)
+                                                ],
+                                              ],
+                                            ),
+                                            Center(
+                                              child: Text("2"),
+                                            ),
+                                          ]))
+
+                                  // Center(child: Text("hesllo"))
                                 ],
                               ),
                             ),
