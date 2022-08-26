@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sih/config/colors.dart';
 import 'package:sih/config/shared_prefrences.dart';
 import 'package:sih/controller/data_controller.dart';
+import 'package:sih/controller/db_controller.dart';
 import 'package:sih/controller/tab_controller.dart';
 import 'package:sih/view/detail_graph_page.dart';
 import 'package:sih/view/filters_page.dart';
@@ -32,6 +33,7 @@ class _MainActivityState extends State with TickerProviderStateMixin {
   final _dataController = Get.put(DataController());
   final _filterController = Get.put(FilterController());
   final controller = AnalysisPageController();
+  final _dbController = Get.put(DbController());
   late bool en;
   @override
   void initState() {
