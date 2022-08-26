@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:sih/widgets/home_screen.dart';
 import 'package:sih/widgets/palette.dart';
-import 'package:sih/widgets/pie_chart.dart';
 import 'package:sih/widgets/stats_grid.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -154,7 +153,6 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
             const StatsGrid(),
             SizedBox(height: 30,
               child: Container(/*color: Colors.greenAccent,*/),),
-            const PieChartMaker(),
             SizedBox(height: 30,
             child: Container(color: Colors.white,),),
             Image.asset("assets/graph.png"),
