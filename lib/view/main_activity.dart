@@ -4,10 +4,15 @@ import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sih/config/colors.dart';
+import 'package:sih/config/shared_prefrences.dart';
 import 'package:sih/controller/data_controller.dart';
 import 'package:sih/controller/tab_controller.dart';
+import 'package:sih/main.dart';
+import 'package:sih/view/detail_graph_page.dart';
 import 'package:sih/view/widgets/filter_container.dart';
+import 'package:sih/view/widgets/graphs/piechart.dart';
 import 'package:sih/view/widgets/primary_button.dart';
 import 'package:sih/view/widgets/primary_card.dart';
 
@@ -25,10 +30,11 @@ class _MainActivityState extends State with TickerProviderStateMixin {
   final _dataController = Get.put(DataController());
   final _filterController = Get.put(FilterController());
   final controller = AnalysisPageController();
-
+  late bool en;
   @override
   void initState() {
     // TODO: implement initState
+    en = UserPreferences.getEn() ?? true;
     controller.tabController = TabController(
       length: 2,
       vsync: this,
@@ -56,6 +62,20 @@ class _MainActivityState extends State with TickerProviderStateMixin {
             ? dashBoard(totalHeight, totalWidth, context)
             : filter(totalHeight, totalWidth, context),
       ),
+      Positioned(
+          top: 50,
+          right: 10,
+          child: MaterialButton(
+            shape: CircleBorder(),
+            color: AppColor.yellow,
+            onPressed: () {
+              setState(() {
+                en = !en;
+                UserPreferences.setEn(en);
+              });
+            },
+            child: Text((en) ? "Aa" : "अ"),
+          ))
     ]));
   }
 
@@ -306,7 +326,6 @@ class _MainActivityState extends State with TickerProviderStateMixin {
                         _filterController.selectedProgram +
                         _filterController.selectedLevel +
                         _filterController.selectedInstType;
-
                     return Center(
                       child: SingleChildScrollView(
                         physics: const BouncingScrollPhysics(),
@@ -437,17 +456,32 @@ class _MainActivityState extends State with TickerProviderStateMixin {
                                               children: [
                                                 for (var each in _dataController
                                                     .data) ...[
-                                                  PrimaryCard(
-                                                      title: each.title,
-                                                      value: each.value,
-                                                      icon: each.icon,
-                                                      color: each.color)
+                                                  InkWell(
+                                                    onTap: () {
+                                                      log("Tapped Card");
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder:
+                                                                  ((context) =>
+                                                                      DetailGraphPage(
+                                                                        title: (en)
+                                                                            ? each.enTitle
+                                                                            : each.hnTitle,
+                                                                      ))));
+                                                    },
+                                                    child: PrimaryCard(
+                                                        title: (en)
+                                                            ? each.enTitle
+                                                            : each.hnTitle,
+                                                        value: each.value,
+                                                        icon: each.icon,
+                                                        color: each.color),
+                                                  )
                                                 ],
                                               ],
                                             ),
-                                            Center(
-                                              child: Text("2"),
-                                            ),
+                                            const PieChart()
                                           ]))
 
                                   // Center(child: Text("hesllo"))

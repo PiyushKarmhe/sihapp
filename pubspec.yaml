@@ -30,11 +30,12 @@ dependencies:
   bubble_tab_indicator: ^0.1.4
   cupertino_icons: ^1.0.2
   custom_radio_grouped_button: ^2.1.2+2
-  fl_chart: ^0.46.0
+  fl_chart: ^0.55.1
   flutter:
     sdk: flutter
   flutter_svg: ^1.1.4
   get: ^4.6.5
+  shared_preferences: ^2.0.15
   toggle_switch: ^1.4.0
 
 dev_dependencies:

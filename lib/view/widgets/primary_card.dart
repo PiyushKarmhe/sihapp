@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -23,42 +25,32 @@ class PrimaryCard extends StatelessWidget {
     return Stack(
       alignment: Alignment.topCenter,
       children: [
-        GestureDetector(
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: ((context) => DetailGraphPage(
-                          title: title,
-                        ))));
-          },
-          child: Container(
-            decoration: BoxDecoration(
-                color: color, borderRadius: BorderRadius.circular(25)),
-            //   width: totalWidth * 0.85,
+        Container(
+          decoration: BoxDecoration(
+              color: color, borderRadius: BorderRadius.circular(25)),
+          //   width: totalWidth * 0.85,
 
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(25),
-                child: Stack(
-                  children: [
-                    SvgPicture.asset(
-                      "assets/components/Intersect.svg",
-                      height: 100,
-                      color: color,
-                      colorBlendMode: BlendMode.dstATop,
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 10),
-                        child: Icon(
-                          icon,
-                          size: 0,
-                          color: Colors.white,
-                        ))
-                  ],
-                ),
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: Stack(
+                children: [
+                  SvgPicture.asset(
+                    "assets/components/Intersect.svg",
+                    height: 100,
+                    color: color,
+                    colorBlendMode: BlendMode.dstATop,
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 10),
+                      child: Icon(
+                        icon,
+                        size: 0,
+                        color: Colors.white,
+                      ))
+                ],
               ),
             ),
           ),
