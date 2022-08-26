@@ -10,23 +10,7 @@ class PieChartView extends StatelessWidget {
       builder: (context, constraints) => Stack(
         children: [
           PieChartMid(),
-          //   Center(
-          //   child: Container(
-          //     height: constraints.maxWidth*0.43,
-          //     decoration: const BoxDecoration(
-          //       color: Colors.white,
-          //       shape: BoxShape.circle,
-          //       boxShadow: [
-          //         BoxShadow(
-          //           blurRadius: 1,
-          //           offset: Offset(-1,-1),
-          //           color: Colors.white,
-          //         ),
-
-          //       ],
-          //     ),
-          //   ),
-          // )
+ 
         ],
       ),
     );

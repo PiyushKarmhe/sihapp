@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:sih/config/colors.dart';
 
 class PieChartMid extends StatefulWidget {
   const PieChartMid({Key? key}) : super(key: key);
@@ -16,10 +17,7 @@ class _PieChartMidState extends State<PieChartMid> {
   Color textColor = Colors.black;
 
   List<String> yearReceived = [
-    "2022-23",
-    "2021-22",
-    "2020-21",
-    "2019 -20",
+    "2019-20",
     "2018-19",
     "2017-18",
     "2016-17",
@@ -27,6 +25,10 @@ class _PieChartMidState extends State<PieChartMid> {
     "2014-15",
     "2013-14",
     "2012-13"
+    "2022-23",
+    "2021-22",
+    "2020-21",
+    
   ];
 
   List<String> numInstitute = [
@@ -46,7 +48,7 @@ class _PieChartMidState extends State<PieChartMid> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 1.3,
+      aspectRatio: 1.1,
       child: Stack(children: [
         Center(
           child: Padding(
@@ -70,7 +72,6 @@ class _PieChartMidState extends State<PieChartMid> {
                           touchedIndex = pieTouchResponse
                               .touchedSection!.touchedSectionIndex;
                           year = yearReceived[touchedIndex];
-                          // displayInstitute = "Institute";
                           valueInstitute = numInstitute[touchedIndex];
                         });
                       }),
@@ -91,10 +92,8 @@ class _PieChartMidState extends State<PieChartMid> {
           child: Material(
             elevation: 130,
             shadowColor: Colors.transparent,
-            //shadowColor: Colors.red,
             shape: const CircleBorder(side: BorderSide.none),
             child: Container(
-              //color: Colors.red,
               decoration: const BoxDecoration(
                   color: Colors.transparent,
                   shape: BoxShape.circle,
@@ -103,10 +102,6 @@ class _PieChartMidState extends State<PieChartMid> {
                         blurRadius: 1,
                         offset: Offset(-1, -1),
                         color: Colors.white),
-                    // BoxShadow(
-                    //   spreadRadius: -2,
-                    //   blurRadius: 10,
-                    // )
                   ]),
             ),
           ),
@@ -114,6 +109,14 @@ class _PieChartMidState extends State<PieChartMid> {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Center(
+              child: Text("Institute",
+              style: TextStyle(
+                color: textColor,
+                fontSize: 25,
+                fontWeight: FontWeight.bold
+              ),)
+            ),
             const SizedBox(
               height: 10,
             ),
@@ -145,27 +148,29 @@ class _PieChartMidState extends State<PieChartMid> {
   }
 
   List<PieChartSectionData> showingSections() {
+    final width = MediaQuery.of(context).size.width;
     return List.generate(11, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 20.0 : 16.0;
-      final radius = 135.0;
+      final radius = isTouched? width*0.42 : width*0.38;
 
       switch (i) {
         case 0:
           return PieChartSectionData(
-              color: Colors.blue[50],
+              color: AppColor.pink,
               value: 10,
               title: '40%',
-              showTitle: false,
+              showTitle: true,
+              titlePositionPercentageOffset: 20,
               radius: radius,
               titleStyle: TextStyle(
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Colors.black,
               ));
         case 1:
           return PieChartSectionData(
-              color: Colors.blue[100],
+              color: AppColor.yellow,
               value: 10,
               title: '30%',
               showTitle: false,
@@ -177,7 +182,7 @@ class _PieChartMidState extends State<PieChartMid> {
               ));
         case 2:
           return PieChartSectionData(
-              color: Colors.blue[200],
+              color: AppColor.red,
               value: 10,
               title: '16%',
               showTitle: false,
@@ -189,7 +194,7 @@ class _PieChartMidState extends State<PieChartMid> {
               ));
         case 3:
           return PieChartSectionData(
-              color: Colors.blue[300],
+              color: AppColor.pink,
               value: 10,
               title: '15%',
               showTitle: false,
@@ -201,7 +206,7 @@ class _PieChartMidState extends State<PieChartMid> {
               ));
         case 4:
           return PieChartSectionData(
-              color: Colors.blue[400],
+              color: AppColor.purple,
               value: 10,
               title: '15%',
               showTitle: false,
@@ -213,7 +218,7 @@ class _PieChartMidState extends State<PieChartMid> {
               ));
         case 5:
           return PieChartSectionData(
-              color: Colors.blue,
+              color: AppColor.green,
               value: 10,
               title: '15%',
               showTitle: false,
@@ -225,7 +230,7 @@ class _PieChartMidState extends State<PieChartMid> {
               ));
         case 6:
           return PieChartSectionData(
-              color: Colors.blue[600],
+              color: AppColor.yellow,
               value: 10,
               title: '15%',
               showTitle: false,
@@ -237,7 +242,7 @@ class _PieChartMidState extends State<PieChartMid> {
               ));
         case 7:
           return PieChartSectionData(
-              color: Colors.blue[700],
+              color: AppColor.red,
               value: 10,
               title: '15%',
               showTitle: false,
@@ -249,7 +254,7 @@ class _PieChartMidState extends State<PieChartMid> {
               ));
         case 8:
           return PieChartSectionData(
-              color: Colors.blue[800],
+              color: AppColor.pink,
               value: 10,
               title: '15%',
               showTitle: false,
@@ -261,7 +266,7 @@ class _PieChartMidState extends State<PieChartMid> {
               ));
         case 9:
           return PieChartSectionData(
-              color: Colors.blue[900],
+              color: AppColor.purple,
               value: 10,
               title: '15%',
               showTitle: false,
@@ -273,7 +278,7 @@ class _PieChartMidState extends State<PieChartMid> {
               ));
         case 10:
           return PieChartSectionData(
-              color: Colors.indigo[800],
+              color: AppColor.green,
               value: 10,
               title: '15%',
               showTitle: false,
