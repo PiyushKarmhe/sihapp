@@ -6,11 +6,12 @@ class AppTheme {
 
   // Light theme
   static final ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: AppColor.white,
+    scaffoldBackgroundColor: Colors.white,
     colorScheme: const ColorScheme.light(
       primary: AppColor.yellow,
       onPrimary: Colors.black,
       secondary: AppColor.lightBlue,
+      secondaryContainer: AppColor.lightBlue1,
     ),
     cardTheme: const CardTheme(
       color: Colors.teal,
@@ -19,12 +20,12 @@ class AppTheme {
       color: Colors.white54,
     ),
     buttonTheme: ButtonThemeData(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
     secondaryHeaderColor: AppColor.lightBlue,
     textTheme: const TextTheme(
         displayLarge: TextStyle(
           color: AppColor.darkBlue,
-          fontSize: 28.0,
+          fontSize: 20.0,
           fontWeight: FontWeight.w900,
         ),
         displayMedium: TextStyle(
@@ -33,28 +34,29 @@ class AppTheme {
         ),
         titleSmall: TextStyle(
           color: Colors.black,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w500,
           fontSize: 22,
         ),
         titleMedium: TextStyle(
           color: Colors.white,
-          fontSize: 22,
-          fontWeight: FontWeight.w900,
+          fontSize: 20,
+          fontWeight: FontWeight.w800,
         ),
         titleLarge: TextStyle(
           color: Colors.white,
-          fontSize: 31,
+          fontSize: 28,
           fontWeight: FontWeight.w900,
         )),
   );
 
   // Dark theme
   static final ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: AppColor.black,
+    scaffoldBackgroundColor: Colors.transparent,
     colorScheme: const ColorScheme.light(
       primary: AppColor.yellow,
       onPrimary: AppColor.white,
       secondary: AppColor.lightBlue,
+      secondaryContainer: AppColor.grey,
     ),
     secondaryHeaderColor: AppColor.grey,
     cardTheme: const CardTheme(
@@ -64,11 +66,11 @@ class AppTheme {
       color: Colors.white54,
     ),
     buttonTheme: ButtonThemeData(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
     textTheme: const TextTheme(
         displayLarge: TextStyle(
           color: Color(0xFFD4D8E3),
-          fontSize: 28.0,
+          fontSize: 20.0,
           fontWeight: FontWeight.w900,
         ),
         displayMedium: TextStyle(
@@ -77,17 +79,17 @@ class AppTheme {
         ),
         titleSmall: TextStyle(
           color: Colors.white,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w500,
           fontSize: 22,
         ),
         titleMedium: TextStyle(
-          color: Colors.white,
-          fontSize: 22,
-          fontWeight: FontWeight.w900,
+          color: AppColor.white,
+          fontSize: 20,
+          fontWeight: FontWeight.w800,
         ),
         titleLarge: TextStyle(
           color: Colors.white,
-          fontSize: 31,
+          fontSize: 28,
           fontWeight: FontWeight.w900,
         )),
   );
