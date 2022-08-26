@@ -9,6 +9,8 @@ class FilterController extends GetxController {
   RxList selectedMin = [].obs;
   RxList selectedWomen = [].obs;
 
+  RxString detailGraphOption = "Year".obs;
+
   List<String> yearList = [
     "2022-23",
     "2021-22",

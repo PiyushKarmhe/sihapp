@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:sih/config/colors.dart';
 import 'package:sih/controller/filter_controller.dart';
 import 'package:sih/view/main_activity.dart';
+import 'package:sih/view/widgets/back_button.dart';
 import 'package:sih/view/widgets/filter_container.dart';
 import 'package:sih/view/widgets/primary_button.dart';
 
@@ -148,27 +149,36 @@ class _FilterPageState extends State<FilterPage> {
             ),
           ),
         ),
-        Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                  vertical: 20, horizontal: totalWidth * 0.2),
-              color:
-                  Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
-              width: totalWidth,
-              child: PrimaryButton(onTap: () {
-                setState(() {
-                  print("Selected Institute types" +
-                      _filterController.selectedInstType.toString());
-                  print("Selected Program" +
-                      _filterController.selectedProgram.toString());
-                });
-                Navigator.pop(context);
-                Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => MainActivity())));
-              }),
-            )),
+        SafeArea(
+          child: Stack(children: [
+            Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                      vertical: 20, horizontal: totalWidth * 0.2),
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onBackground
+                      .withOpacity(0.5),
+                  width: totalWidth,
+                  child: PrimaryButton(onTap: () {
+                    setState(() {
+                      print("Selected Institute types" +
+                          _filterController.selectedInstType.toString());
+                      print("Selected Program" +
+                          _filterController.selectedProgram.toString());
+                    });
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => MainActivity())));
+                  }),
+                )),
+            const AppBackButton()
+          ]),
+        ),
       ],
     ));
   }

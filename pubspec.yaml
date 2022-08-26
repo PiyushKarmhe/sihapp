@@ -28,6 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   bubble_tab_indicator: ^0.1.4
+  carousel_slider: ^4.1.1
   cupertino_icons: ^1.0.2
   custom_radio_grouped_button: ^2.1.2+2
   fl_chart: ^0.55.1

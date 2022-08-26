@@ -18,6 +18,7 @@ class FilterContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> sel = List<String>.from(selected.value);
     final totalWidth = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.all(10),
@@ -37,7 +38,7 @@ class FilterContainer extends StatelessWidget {
         unSelectedColor: color,
         unSelectedBorderColor: AppColor.white,
         enableButtonWrap: false,
-        defaultSelected: ["All", "2022-23"],
+        defaultSelected: sel,
         buttonTextStyle: ButtonTextStyle(
           selectedColor: color,
           unSelectedColor: AppColor.white,

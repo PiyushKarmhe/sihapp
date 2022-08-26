@@ -1,8 +1,8 @@
-import 'package:fl_chart/fl_chart.dart';
+import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 import 'package:sih/config/colors.dart';
+import 'package:sih/controller/filter_controller.dart';
 import 'package:sih/view/widgets/clip_container.dart';
 import 'package:sih/view/widgets/graphs/line_chart.dart';
 
@@ -12,6 +12,7 @@ class DetailGraphPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _filterController = Get.put(FilterController());
     List<String> yearReceived = [
       "2021-22",
       "2020-21",
@@ -43,7 +44,7 @@ class DetailGraphPage extends StatelessWidget {
         child: Center(
           child: Column(children: [
             const SizedBox(
-              height: 60,
+              height: 140,
             ),
             Text(
               title,
@@ -52,36 +53,55 @@ class DetailGraphPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            LineGraph(xValue: yearReceived, yValue: totalInstitute),
+            Padding(
+                padding: EdgeInsets.all(8),
+                child: LineGraph(xValue: yearReceived, yValue: totalInstitute)),
+            SizedBox(
+              height: 20,
+            ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
-              child: Row(children: const [
-                ClipContainer(
-                  child: Text(
-                    "Year",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
-                  ),
+              child: Padding(
+                padding: EdgeInsets.all(8),
+                child: Container(
+                  height: 200,
+                  width: totalWidth * 0.7,
+                  child: CustomRadioButton<String>(
+                      buttonLables: [
+                        "Year",
+                        "Program",
+                        "Level",
+                        "Institute Type"
+                      ],
+                      radioButtonValue: ((p0) {
+                        _filterController.detailGraphOption.value = p0;
+                      }),
+                      buttonValues: [
+                        "Year",
+                        "Program",
+                        "Level",
+                        "Institute Type"
+                      ],
+                      horizontal: true,
+                      selectedColor: AppColor.white,
+                      selectedBorderColor: AppColor.white,
+                      unSelectedColor: AppColor.green,
+                      unSelectedBorderColor: AppColor.green,
+                      enableButtonWrap: false,
+                      defaultSelected: "Year",
+                      buttonTextStyle: const ButtonTextStyle(
+                        selectedColor: AppColor.green,
+                        unSelectedColor: AppColor.white,
+                        textStyle: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w700),
+                      ),
+                      customShape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      enableShape: true),
                 ),
-                ClipContainer(
-                  child: Text(
-                    "Program",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
-                  ),
-                ),
-                ClipContainer(
-                  child: Text(
-                    "Level",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
-                  ),
-                ),
-                ClipContainer(
-                  child: Text(
-                    "Institute Type",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
-                  ),
-                )
-              ]),
+              ),
             )
           ]),
         ),

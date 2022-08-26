@@ -11,6 +11,7 @@ import 'package:sih/controller/data_controller.dart';
 import 'package:sih/controller/tab_controller.dart';
 import 'package:sih/view/detail_graph_page.dart';
 import 'package:sih/view/filters_page.dart';
+import 'package:sih/view/notification_page.dart';
 import 'package:sih/view/widgets/filter_container.dart';
 import 'package:sih/view/widgets/graphs/piechart.dart';
 import 'package:sih/view/widgets/primary_button.dart';
@@ -72,7 +73,24 @@ class _MainActivityState extends State with TickerProviderStateMixin {
               });
             },
             child: Text((en) ? "Aa" : "अ"),
-          ))
+          )),
+      Positioned(
+        top: 100,
+        right: 10,
+        child: MaterialButton(
+            shape: const CircleBorder(),
+            color: AppColor.darkBlue,
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => const NotificationPage())));
+            },
+            child: const Icon(
+              Icons.notifications_active,
+              color: AppColor.white,
+            )),
+      )
     ]));
   }
 
