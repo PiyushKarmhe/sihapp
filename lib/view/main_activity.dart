@@ -141,9 +141,48 @@ class _MainActivityState extends State with TickerProviderStateMixin {
                   selected: _filterController.selectedInstType,
                   horizontal: true,
                 ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "State",
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+                FilterContainer(
+                  color: AppColor.green,
+                  labelList: _filterController.stateList,
+                  selected: _filterController.selectedState,
+                  horizontal: true,
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Minority",
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+                FilterContainer(
+                  color: AppColor.yellow,
+                  labelList: _filterController.minorityList,
+                  selected: _filterController.selectedMin,
+                  horizontal: true,
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Women",
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+                FilterContainer(
+                  color: AppColor.darkYellow,
+                  labelList: _filterController.womenList,
+                  selected: _filterController.selectedWomen,
+                  horizontal: true,
+                ),
                 const SizedBox(
                   height: 150,
-                )
+                ),
               ]),
             ),
           ),
@@ -173,14 +212,16 @@ class _MainActivityState extends State with TickerProviderStateMixin {
       double totalHeight, double totalWidth, BuildContext context) {
     log("Dashboard");
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
+        floatingActionButton: FloatingActionButton.extended(
+          isExtended: true,
           backgroundColor: AppColor.white,
           onPressed: () {
             setState(() {
               showFilter.value = !showFilter.value;
             });
           },
-          child: const Icon(
+          label: Text("Filter"),
+          icon: const Icon(
             Icons.filter_alt,
             size: 30,
             color: AppColor.darkYellow,
@@ -298,7 +339,38 @@ class _MainActivityState extends State with TickerProviderStateMixin {
                                                   fontWeight: FontWeight.w700),
                                             ),
                                             GestureDetector(
-                                              onTap: () {},
+                                              onTap: () {
+                                                setState(() {
+                                                  if (_filterController
+                                                      .selectedYears
+                                                      .contains(every)) {
+                                                    _filterController
+                                                        .selectedYears
+                                                        .remove(every);
+                                                  }
+                                                  if (_filterController
+                                                      .selectedProgram
+                                                      .contains(every)) {
+                                                    _filterController
+                                                        .selectedProgram
+                                                        .remove(every);
+                                                  }
+                                                  if (_filterController
+                                                      .selectedLevel
+                                                      .contains(every)) {
+                                                    _filterController
+                                                        .selectedLevel
+                                                        .remove(every);
+                                                  }
+                                                  if (_filterController
+                                                      .selectedInstType
+                                                      .contains(every)) {
+                                                    _filterController
+                                                        .selectedInstType
+                                                        .remove(every);
+                                                  }
+                                                });
+                                              },
                                               child: const Icon(
                                                 Icons.close,
                                                 color: AppColor.black,
@@ -357,10 +429,10 @@ class _MainActivityState extends State with TickerProviderStateMixin {
                                               physics:
                                                   const BouncingScrollPhysics(),
                                               crossAxisCount: 2,
-                                              mainAxisSpacing: 10,
-                                              crossAxisSpacing: 10,
+                                              mainAxisSpacing: 14,
+                                              crossAxisSpacing: 14,
                                               childAspectRatio: 1.4,
-                                              shrinkWrap: true,
+                                              shrinkWrap: false,
                                               children: [
                                                 for (var each in _dataController
                                                     .data) ...[

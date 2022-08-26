@@ -30,6 +30,7 @@ class FilterContainer extends StatelessWidget {
       child: CustomCheckBoxGroup<String>(
         buttonLables: labelList,
         horizontal: horizontal,
+        padding: 0,
         buttonValuesList: labelList,
         selectedColor: AppColor.white,
         selectedBorderColor: AppColor.white,
