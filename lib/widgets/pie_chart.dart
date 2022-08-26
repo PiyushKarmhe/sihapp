@@ -30,64 +30,49 @@ class _PieChartMakerState extends State<PieChartMaker> {
       width: 600,
       child: Stack(
         children: [
-          Material(
-            elevation: 200,
-            child: Container(
-              decoration:  const BoxDecoration(
-              shape: BoxShape.circle,
-                //color: Colors.green,
-              ),
-              child: PieChart(
-                PieChartData(
-                    pieTouchData: PieTouchData(touchCallback: (FlTouchEvent event, pieTouchResponse){
-                      setState(() {
-                        if(!event.isInterestedForInteractions ||
-                            pieTouchResponse == null ||
-                            pieTouchResponse.touchedSection == null){
-                          touchedIndex = -1;
-                          return;
-                        }
-                        touchedIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
-                        year = yearReceived[touchedIndex];
-                        displayInstitute = "Institute";
-                        valueInstitute = numInstitute[touchedIndex];
+          Container(
+            decoration:  const BoxDecoration(
+            shape: BoxShape.circle,
+            ),
+            child: PieChart(
+              PieChartData(
+                  pieTouchData: PieTouchData(touchCallback: (FlTouchEvent event, pieTouchResponse){
+                    setState(() {
+                      if(!event.isInterestedForInteractions ||
+                          pieTouchResponse == null ||
+                          pieTouchResponse.touchedSection == null){
+                        touchedIndex = -1;
+                        return;
+                      }
+                      touchedIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
+                      year = yearReceived[touchedIndex];
+                      displayInstitute = "Institute";
+                      valueInstitute = numInstitute[touchedIndex];
 
-                      });
-                    }),
-                  borderData: FlBorderData(show: false,),
-                    sectionsSpace: 0,
-                    centerSpaceRadius: 90,
-                  sections: showingSections()
-                ),
+                    });
+                  }),
+                borderData: FlBorderData(show: false,),
+                  sectionsSpace: 0,
+                  centerSpaceRadius: 90,
+                sections: showingSections()
               ),
             ),
           ),
-          Padding( //for elevated circle
-            padding: const EdgeInsets.fromLTRB(82, 80, 80, 80),
-            child: Material(
-              elevation: 130,
-              shadowColor: Colors.transparent,
-              //shadowColor: Colors.red,
-              shape: const CircleBorder(side: BorderSide.none),
-              child: Container(
-                //color: Colors.red,
-                decoration: const BoxDecoration(
-                  color: Colors.transparent,
-                  shape: BoxShape.circle,
-                ),
-              ),
-            ),
-          ),
+          // Padding( //for elevated circle
+          //   padding: const EdgeInsets.fromLTRB(900, 80, 80, 80),
+          //   child: Container(
+          //   ),
+          // ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children:  <Widget>[
+            children:<Widget>[
               Center(
                   child: Text(
                       displayInstitute,
                     style: TextStyle(color: textColor,fontSize: 30,fontWeight: FontWeight.bold),
                   )
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(height: 14,),
               Center(
                 child: Text(
                   year,

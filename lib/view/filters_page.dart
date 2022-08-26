@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/_http/_html/_file_decoder_html.dart';
 import 'package:sih/config/colors.dart';
 import 'package:sih/controller/filter_controller.dart';
 import 'package:sih/view/main_activity.dart';
@@ -59,8 +60,10 @@ class _FilterPageState extends State<FilterPage> {
                 ),
                 FilterContainer(
                   color: AppColor.red,
-                  labelList: _filterController.yearList,
-                  selected: _filterController.selectedYears,
+                  enlabelList: _filterController.yearList,
+                  hnlabelList: _filterController.yearList,
+                  enselected: _filterController.selectedYears,
+                  hnselected: _filterController.selectedYears,
                   horizontal: false,
                 ),
                 Align(
@@ -72,8 +75,10 @@ class _FilterPageState extends State<FilterPage> {
                 ),
                 FilterContainer(
                   color: AppColor.purple,
-                  labelList: _filterController.programList,
-                  selected: _filterController.selectedProgram,
+                  enlabelList: _filterController.programList,
+                  hnlabelList: _filterController.hnProgram,
+                  enselected: _filterController.selectedProgram,
+                  hnselected: _filterController.selectedProgramHn,
                   horizontal: true,
                 ),
                 Align(
@@ -85,8 +90,10 @@ class _FilterPageState extends State<FilterPage> {
                 ),
                 FilterContainer(
                   color: AppColor.green,
-                  labelList: _filterController.levelList,
-                  selected: _filterController.selectedLevel,
+                  enlabelList: _filterController.levelList,
+                  hnlabelList: _filterController.levelList,
+                  enselected: _filterController.selectedLevel,
+                  hnselected: _filterController.selectedLevel,
                   horizontal: false,
                 ),
                 Align(
@@ -98,8 +105,10 @@ class _FilterPageState extends State<FilterPage> {
                 ),
                 FilterContainer(
                   color: AppColor.pink,
-                  labelList: _filterController.instTypeList,
-                  selected: _filterController.selectedInstType,
+                  enlabelList: _filterController.instTypeList,
+                  hnlabelList: _filterController.hnInstList,
+                  enselected: _filterController.selectedInstType,
+                  hnselected: _filterController.selectedInstTypeHn,
                   horizontal: true,
                 ),
                 Align(
@@ -111,8 +120,10 @@ class _FilterPageState extends State<FilterPage> {
                 ),
                 FilterContainer(
                   color: AppColor.green,
-                  labelList: _filterController.stateList,
-                  selected: _filterController.selectedState,
+                  enlabelList: _filterController.stateList,
+                  hnlabelList: _filterController.hnState,
+                  enselected: _filterController.selectedState,
+                  hnselected: _filterController.selectedStateHn,
                   horizontal: true,
                 ),
                 Align(
@@ -124,8 +135,10 @@ class _FilterPageState extends State<FilterPage> {
                 ),
                 FilterContainer(
                   color: AppColor.yellow,
-                  labelList: _filterController.minorityList,
-                  selected: _filterController.selectedMin,
+                  enlabelList: _filterController.minorityList,
+                  hnlabelList: _filterController.minorityList,
+                  enselected: _filterController.selectedMin,
+                  hnselected: _filterController.selectedMin,
                   horizontal: true,
                 ),
                 Align(
@@ -137,8 +150,10 @@ class _FilterPageState extends State<FilterPage> {
                 ),
                 FilterContainer(
                   color: AppColor.red,
-                  labelList: _filterController.womenList,
-                  selected: _filterController.selectedWomen,
+                  enlabelList: _filterController.womenList,
+                  hnlabelList: _filterController.womenList,
+                  enselected: _filterController.selectedWomen,
+                  hnselected: _filterController.selectedWomen,
                   horizontal: true,
                 ),
                 const SizedBox(

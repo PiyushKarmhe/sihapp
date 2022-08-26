@@ -10,7 +10,6 @@ class PieChartView extends StatelessWidget {
       builder: (context, constraints) => Stack(
         children: [
           PieChartMid(),
- 
         ],
       ),
     );
