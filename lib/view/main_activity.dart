@@ -10,6 +10,7 @@ import 'package:sih/config/shared_prefrences.dart';
 import 'package:sih/controller/data_controller.dart';
 import 'package:sih/controller/tab_controller.dart';
 import 'package:sih/view/detail_graph_page.dart';
+import 'package:sih/view/filters_page.dart';
 import 'package:sih/view/widgets/filter_container.dart';
 import 'package:sih/view/widgets/graphs/piechart.dart';
 import 'package:sih/view/widgets/primary_button.dart';
@@ -57,11 +58,7 @@ class _MainActivityState extends State with TickerProviderStateMixin {
           AppColor.grad2,
         ], radius: 2, center: Alignment.topRight)),
       ),
-      Obx(
-        () => (!showFilter.value)
-            ? dashBoard(totalHeight, totalWidth, context)
-            : filter(totalHeight, totalWidth, context),
-      ),
+      dashBoard(totalHeight, totalWidth, context),
       Positioned(
           top: 50,
           right: 10,
@@ -79,156 +76,6 @@ class _MainActivityState extends State with TickerProviderStateMixin {
     ]));
   }
 
-  Widget filter(totalHeight, totalWidth, context) {
-    log("Filter");
-    return Scaffold(
-        body: Stack(
-      children: [
-        Positioned(
-          top: -totalHeight * 0.1,
-          left: -totalWidth * 0.42,
-          child: SvgPicture.asset(
-            "assets/components/Frame.svg",
-            height: totalHeight * 0.3,
-            color: Theme.of(context).secondaryHeaderColor.withOpacity(0.8),
-          ),
-        ),
-        SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(children: [
-                SizedBox(
-                  width: totalWidth,
-                  height: totalHeight * 0.1,
-                ),
-                Text(
-                  "Apply Filters",
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
-                SizedBox(
-                  height: totalHeight * 0.05,
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Year",
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                ),
-                FilterContainer(
-                  color: AppColor.red,
-                  labelList: _filterController.yearList,
-                  selected: _filterController.selectedYears,
-                  horizontal: false,
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Program",
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                ),
-                FilterContainer(
-                  color: AppColor.purple,
-                  labelList: _filterController.programList,
-                  selected: _filterController.selectedProgram,
-                  horizontal: true,
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Level",
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                ),
-                FilterContainer(
-                  color: AppColor.green,
-                  labelList: _filterController.levelList,
-                  selected: _filterController.selectedLevel,
-                  horizontal: false,
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Institution Type",
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                ),
-                FilterContainer(
-                  color: AppColor.pink,
-                  labelList: _filterController.instTypeList,
-                  selected: _filterController.selectedInstType,
-                  horizontal: true,
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "State",
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                ),
-                FilterContainer(
-                  color: AppColor.green,
-                  labelList: _filterController.stateList,
-                  selected: _filterController.selectedState,
-                  horizontal: true,
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Minority",
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                ),
-                FilterContainer(
-                  color: AppColor.yellow,
-                  labelList: _filterController.minorityList,
-                  selected: _filterController.selectedMin,
-                  horizontal: true,
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Women",
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                ),
-                FilterContainer(
-                  color: AppColor.red,
-                  labelList: _filterController.womenList,
-                  selected: _filterController.selectedWomen,
-                  horizontal: true,
-                ),
-                const SizedBox(
-                  height: 150,
-                ),
-              ]),
-            ),
-          ),
-        ),
-        Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                  vertical: 20, horizontal: totalWidth * 0.2),
-              color:
-                  Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
-              width: totalWidth,
-              child: PrimaryButton(onTap: () {
-                setState(() {
-                  print("Selected Institute types" +
-                      _filterController.selectedInstType.toString());
-                  print("Selected Program" +
-                      _filterController.selectedProgram.toString());
-                  showFilter.value = !showFilter.value;
-                });
-              }),
-            )),
-      ],
-    ));
-  }
-
   Widget dashBoard(
       double totalHeight, double totalWidth, BuildContext context) {
     log("Dashboard");
@@ -237,9 +84,8 @@ class _MainActivityState extends State with TickerProviderStateMixin {
           isExtended: true,
           backgroundColor: AppColor.white,
           onPressed: () {
-            setState(() {
-              showFilter.value = !showFilter.value;
-            });
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => FilterPage()));
           },
           label: const Text("Filter"),
           icon: const Icon(
