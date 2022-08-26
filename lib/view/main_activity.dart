@@ -9,7 +9,6 @@ import 'package:sih/config/colors.dart';
 import 'package:sih/config/shared_prefrences.dart';
 import 'package:sih/controller/data_controller.dart';
 import 'package:sih/controller/tab_controller.dart';
-import 'package:sih/main.dart';
 import 'package:sih/view/detail_graph_page.dart';
 import 'package:sih/view/widgets/filter_container.dart';
 import 'package:sih/view/widgets/graphs/piechart.dart';
@@ -19,6 +18,7 @@ import 'package:sih/view/widgets/primary_card.dart';
 import '../controller/filter_controller.dart';
 
 RxBool showFilter = false.obs;
+RxBool showMenu = false.obs;
 
 class MainActivity extends StatefulWidget {
   MainActivity({Key? key}) : super(key: key);
@@ -66,7 +66,7 @@ class _MainActivityState extends State with TickerProviderStateMixin {
           top: 50,
           right: 10,
           child: MaterialButton(
-            shape: CircleBorder(),
+            shape: const CircleBorder(),
             color: AppColor.yellow,
             onPressed: () {
               setState(() {
@@ -241,7 +241,7 @@ class _MainActivityState extends State with TickerProviderStateMixin {
               showFilter.value = !showFilter.value;
             });
           },
-          label: Text("Filter"),
+          label: const Text("Filter"),
           icon: const Icon(
             Icons.filter_alt,
             size: 30,
