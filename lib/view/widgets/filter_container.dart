@@ -23,6 +23,7 @@ class FilterContainer extends StatelessWidget {
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
       width: totalWidth,
+      constraints: const BoxConstraints(maxHeight: 280),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(25),
@@ -30,13 +31,13 @@ class FilterContainer extends StatelessWidget {
       child: CustomCheckBoxGroup<String>(
         buttonLables: labelList,
         horizontal: horizontal,
-        padding: 0,
         buttonValuesList: labelList,
         selectedColor: AppColor.white,
         selectedBorderColor: AppColor.white,
         unSelectedColor: color,
         unSelectedBorderColor: AppColor.white,
         enableButtonWrap: false,
+        defaultSelected: ["All", "2022-23"],
         buttonTextStyle: ButtonTextStyle(
           selectedColor: color,
           unSelectedColor: AppColor.white,

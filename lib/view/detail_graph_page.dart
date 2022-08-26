@@ -9,12 +9,16 @@ class DetailGraphPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: [
-        Text(
-          title,
-          style: Theme.of(context).textTheme.displayLarge,
-        )
-      ]),
+      body: SafeArea(
+        child: Center(
+          child: Column(children: [
+            Text(
+              title,
+              style: Theme.of(context).textTheme.displayLarge,
+            )
+          ]),
+        ),
+      ),
     );
   }
 }

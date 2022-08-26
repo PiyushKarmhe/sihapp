@@ -175,7 +175,7 @@ class _MainActivityState extends State with TickerProviderStateMixin {
                   ),
                 ),
                 FilterContainer(
-                  color: AppColor.darkYellow,
+                  color: AppColor.red,
                   labelList: _filterController.womenList,
                   selected: _filterController.selectedWomen,
                   horizontal: true,
@@ -192,7 +192,8 @@ class _MainActivityState extends State with TickerProviderStateMixin {
             child: Container(
               padding: EdgeInsets.symmetric(
                   vertical: 20, horizontal: totalWidth * 0.2),
-              color: Theme.of(context).colorScheme.onBackground,
+              color:
+                  Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
               width: totalWidth,
               child: PrimaryButton(onTap: () {
                 setState(() {
