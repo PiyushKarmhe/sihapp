@@ -8,6 +8,9 @@ class FilterController extends GetxController {
   RxList selectedState = [].obs;
   RxList selectedMin = [].obs;
   RxList selectedWomen = [].obs;
+  RxList selectedProgramHn = [].obs;
+  RxList selectedInstTypeHn = [].obs;
+  RxList selectedStateHn = [].obs;
 
   RxString detailGraphOption = "Year".obs;
 
@@ -101,6 +104,7 @@ class FilterController extends GetxController {
   List<String> minorityList = ["N", "Y"];
   List<String> womenList = ["N", "Y"];
   List<String> hnProgram = [
+    "सब",
     "अनुप्रयुक्त कला शिल्प",
     "टाउन एंड सिटी प्लानिंग",
     "वास्तुकला और योजना",
@@ -114,6 +118,7 @@ class FilterController extends GetxController {
     "होटल मैनेजमेंट"
   ];
   List<String> hnInstList = [
+    "सब",
     "निजी",
     "केंद्रीय विश्वविद्यालय",
     "मानद विश्वविद्यालय (GOVT)",
@@ -128,6 +133,7 @@ class FilterController extends GetxController {
     "विश्वविद्यालय प्रबंधित-निजी"
   ];
   List<String> hnState = [
+    "सब",
     "आंध्र प्रदेश",
     "अरुणाचल प्रदेश",
     "असम",

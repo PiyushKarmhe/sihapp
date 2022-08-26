@@ -2,23 +2,32 @@ import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sih/config/colors.dart';
+import 'package:sih/config/shared_prefrences.dart';
 
 class FilterContainer extends StatelessWidget {
   final selected;
   final color;
-  final labelList;
+  final enlabelList;
+  final hnlabelList;
   final horizontal;
   const FilterContainer(
       {Key? key,
       required this.color,
       required this.selected,
-      required this.labelList,
+      required this.enlabelList,
+      required this.hnlabelList,
       required this.horizontal})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List<String> sel = List<String>.from(selected.value);
+
+    var en = UserPreferences.getEn();
+    if (en == null) {
+      en = true;
+    }
+
     final totalWidth = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.all(10),
@@ -30,9 +39,9 @@ class FilterContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(25),
       ),
       child: CustomCheckBoxGroup<String>(
-        buttonLables: labelList,
+        buttonLables: (en) ? enlabelList : hnlabelList,
         horizontal: horizontal,
-        buttonValuesList: labelList,
+        buttonValuesList: (en) ? enlabelList : hnlabelList,
         selectedColor: AppColor.white,
         selectedBorderColor: AppColor.white,
         unSelectedColor: color,
@@ -51,7 +60,6 @@ class FilterContainer extends StatelessWidget {
         enableShape: true,
         checkBoxButtonValues: (List<dynamic> value) {
           selected.value = value;
-          print(selected.value);
         },
       ),
     );

@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/_http/_html/_file_decoder_html.dart';
 import 'package:sih/config/colors.dart';
 import 'package:sih/controller/filter_controller.dart';
 import 'package:sih/view/main_activity.dart';
@@ -60,7 +61,8 @@ class _FilterPageState extends State<FilterPage> {
                 ),
                 FilterContainer(
                   color: AppColor.red,
-                  labelList: _filterController.yearList,
+                  enlabelList: _filterController.yearList,
+                  hnlabelList: _filterController.yearList,
                   selected: _filterController.selectedYears,
                   horizontal: false,
                 ),
@@ -73,7 +75,8 @@ class _FilterPageState extends State<FilterPage> {
                 ),
                 FilterContainer(
                   color: AppColor.purple,
-                  labelList: _filterController.programList,
+                  enlabelList: _filterController.programList,
+                  hnlabelList: _filterController.hnProgram,
                   selected: _filterController.selectedProgram,
                   horizontal: true,
                 ),
@@ -86,7 +89,8 @@ class _FilterPageState extends State<FilterPage> {
                 ),
                 FilterContainer(
                   color: AppColor.green,
-                  labelList: _filterController.levelList,
+                  enlabelList: _filterController.levelList,
+                  hnlabelList: _filterController.levelList,
                   selected: _filterController.selectedLevel,
                   horizontal: false,
                 ),
@@ -99,7 +103,8 @@ class _FilterPageState extends State<FilterPage> {
                 ),
                 FilterContainer(
                   color: AppColor.pink,
-                  labelList: _filterController.instTypeList,
+                  enlabelList: _filterController.instTypeList,
+                  hnlabelList: _filterController.hnInstList,
                   selected: _filterController.selectedInstType,
                   horizontal: true,
                 ),
@@ -112,8 +117,9 @@ class _FilterPageState extends State<FilterPage> {
                 ),
                 FilterContainer(
                   color: AppColor.green,
-                  labelList: _filterController.stateList,
-                  selected: _filterController.selectedState,
+                  enlabelList: _filterController.stateList,
+                  hnlabelList: _filterController.hnState,
+                  selected: _filterController.selectedStateHn,
                   horizontal: true,
                 ),
                 Align(
@@ -125,7 +131,8 @@ class _FilterPageState extends State<FilterPage> {
                 ),
                 FilterContainer(
                   color: AppColor.yellow,
-                  labelList: _filterController.minorityList,
+                  enlabelList: _filterController.minorityList,
+                  hnlabelList: _filterController.minorityList,
                   selected: _filterController.selectedMin,
                   horizontal: true,
                 ),
@@ -138,7 +145,8 @@ class _FilterPageState extends State<FilterPage> {
                 ),
                 FilterContainer(
                   color: AppColor.red,
-                  labelList: _filterController.womenList,
+                  enlabelList: _filterController.womenList,
+                  hnlabelList: _filterController.womenList,
                   selected: _filterController.selectedWomen,
                   horizontal: true,
                 ),
