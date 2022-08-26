@@ -24,7 +24,7 @@ class _PieChartMidState extends State<PieChartMid> {
     "2015-16",
     "2014-15",
     "2013-14",
-    "2012-13"
+    "2012-13",
     "2022-23",
     "2021-22",
     "2020-21",
@@ -99,7 +99,6 @@ class _PieChartMidState extends State<PieChartMid> {
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                        blurRadius: 1,
                         offset: Offset(-1, -1),
                         color: Colors.white),
                   ]),
