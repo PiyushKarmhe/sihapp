@@ -34,9 +34,11 @@ dependencies:
   fl_chart: ^0.55.1
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.10.0
   flutter_svg: ^1.1.4
   get: ^4.6.5
   shared_preferences: ^2.0.15
+  shimmer: ^2.0.0
   toggle_switch: ^1.4.0
 
 dev_dependencies:

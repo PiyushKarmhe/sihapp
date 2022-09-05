@@ -55,13 +55,13 @@ class _MainActivityState extends State with TickerProviderStateMixin {
     return WillPopScope(
         onWillPop: () async {
           final timegap = DateTime.now().difference(pre_backpress);
-          final cantExit = timegap >= Duration(seconds: 2);
+          final cantExit = timegap >= const Duration(seconds: 2);
           pre_backpress = DateTime.now();
 
           if (cantExit) {
             //show snackbar
-            final snack = SnackBar(
-              content: Text('Press Back button again to Exit'),
+            final snack = const SnackBar(
+              content: const Text('Press Back button again to Exit'),
               duration: Duration(seconds: 2),
             );
             ScaffoldMessenger.of(context).showSnackBar(snack);
@@ -95,6 +95,22 @@ class _MainActivityState extends State with TickerProviderStateMixin {
                   });
                 },
                 child: Text((en) ? "Aa" : "अ"),
+              )),
+          Positioned(
+              top: 100,
+              right: 10,
+              child: MaterialButton(
+                shape: const CircleBorder(),
+                color: AppColor.yellow,
+                onPressed: () {
+                  setState(() {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const NotificationPage()));
+                  });
+                },
+                child: const Icon(Icons.notifications_active),
               ))
         ])));
   }
@@ -110,9 +126,9 @@ class _MainActivityState extends State with TickerProviderStateMixin {
 
           if (cantExit) {
             //show snackbar
-            final snack = SnackBar(
-              content: Text('Press Back button again to Exit'),
-              duration: Duration(seconds: 2),
+            final snack = const SnackBar(
+              content: const Text('Press Back button again to Exit'),
+              duration: const Duration(seconds: 2),
             );
             ScaffoldMessenger.of(context).showSnackBar(snack);
             return false;
@@ -125,8 +141,10 @@ class _MainActivityState extends State with TickerProviderStateMixin {
               isExtended: true,
               backgroundColor: AppColor.white,
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => FilterPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const FilterPage()));
               },
               label: const Text("Filter"),
               icon: const Icon(
@@ -210,10 +228,14 @@ class _MainActivityState extends State with TickerProviderStateMixin {
                     SliverList(
                       delegate: SliverChildBuilderDelegate(
                           (BuildContext context, int index) {
-                        final _megaList = _filterController.selectedYears +
-                            _filterController.selectedProgram +
+                        var _megaList = _filterController.selectedYears +
                             _filterController.selectedLevel +
-                            _filterController.selectedInstType;
+                            _filterController.selectedState +
+                            _filterController.selectedWomen +
+                            _filterController.selectedProgram +
+                            _filterController.selectedInstType +
+                            _filterController.selectedMin;
+                        _megaList.toSet();
                         return Center(
                           child: SingleChildScrollView(
                             physics: const BouncingScrollPhysics(),

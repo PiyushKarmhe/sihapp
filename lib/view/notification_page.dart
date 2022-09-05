@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sih/config/colors.dart';
 import 'package:sih/view/widgets/back_button.dart';
 import 'package:sih/view/widgets/notification_tile.dart';
@@ -30,22 +33,38 @@ class NotificationPage extends StatelessWidget {
                       "Notifications",
                       style: Theme.of(context).textTheme.displayLarge,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
-                    CarouselSlider(
-                        items: [
-                          slider("assets/poster2_final.jpg"),
-                          slider("assets/poster1.jpg"),
-                          slider("assets/poster3_final.jpg"),
-                          slider("assets/poster4.jpg"),
-                          slider("assets/poster5.jpg"),
-                        ],
-                        options: CarouselOptions(
-                            enableInfiniteScroll: true,
-                            autoPlay: true,
-                            enlargeCenterPage: true)),
-                    SizedBox(
+                    FutureBuilder(
+                      future: Future.delayed(Duration(seconds: 2), () {
+                        return 1;
+                      }),
+                      builder: ((context, snapshot) {
+                        if (snapshot.hasData) {
+                          return CarouselSlider(
+                              items: [
+                                slider("assets/poster2_final.jpg"),
+                                slider("assets/poster1.jpg"),
+                                slider("assets/poster3_final.jpg"),
+                                slider("assets/poster4.jpg"),
+                                slider("assets/poster5.jpg"),
+                              ],
+                              options: CarouselOptions(
+                                  enableInfiniteScroll: true,
+                                  autoPlay: true,
+                                  enlargeCenterPage: true));
+                        } else {
+                          return CarouselSlider(
+                              items: [shimmer()],
+                              options: CarouselOptions(
+                                  enableInfiniteScroll: true,
+                                  autoPlay: true,
+                                  enlargeCenterPage: true));
+                        }
+                      }),
+                    ),
+                    const SizedBox(
                       height: 30,
                     ),
                     Text(
@@ -53,26 +72,45 @@ class NotificationPage extends StatelessWidget {
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.onPrimary),
                     ),
-                    NotificationTile(
-                      color: Theme.of(context).colorScheme.primary,
-                      text:
-                          "Admission is going on top Engineering Colleges, call on 1800-167-670 now to get enrolled",
-                    ),
-                    NotificationTile(
-                      color: Theme.of(context).colorScheme.primary,
-                      text:
-                          "Admission is going on top Engineering Colleges, call on 1800-167-670 now to get enrolled",
-                    ),
-                    NotificationTile(
-                      color: Theme.of(context).colorScheme.primary,
-                      text:
-                          "Admission is going on top Engineering Colleges, call on 1800-167-670 now to get enrolled",
-                    ),
-                    NotificationTile(
-                      color: Theme.of(context).colorScheme.primary,
-                      text:
-                          "Admission is going on top Engineering Colleges, call on 1800-167-670 now to get enrolled",
-                    ),
+                    FutureBuilder(
+                        future: Future.delayed(const Duration(seconds: 3), (() {
+                          return 1;
+                        })),
+                        builder: ((context, snapshot) {
+                          if (snapshot.hasData) {
+                            return Column(
+                              children: [
+                                NotificationTile(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  text:
+                                      "Admission is going on top Engineering Colleges, call on 1800-167-670 now to get enrolled",
+                                ),
+                                NotificationTile(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  text:
+                                      "Admission is going on top Engineering Colleges, call on 1800-167-670 now to get enrolled",
+                                ),
+                                NotificationTile(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  text:
+                                      "Admission is going on top Engineering Colleges, call on 1800-167-670 now to get enrolled",
+                                ),
+                                NotificationTile(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  text:
+                                      "Admission is going on top Engineering Colleges, call on 1800-167-670 now to get enrolled",
+                                ),
+                              ],
+                            );
+                          } else {
+                            return const Padding(
+                              padding: EdgeInsets.only(top: 140.0),
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            );
+                          }
+                        })),
                   ],
                 )),
             const AppBackButton(),
@@ -159,6 +197,20 @@ class NotificationPage extends StatelessWidget {
                   },
                 )),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget shimmer() {
+    return Expanded(
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.withOpacity(0.3),
+        highlightColor: Colors.grey.withOpacity(0.1),
+        enabled: true,
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(14), color: Colors.grey[300]),
         ),
       ),
     );

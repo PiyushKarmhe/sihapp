@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:sih/config/colors.dart';
 
 class DashboardData {
-  final String enTitle;
-  final String hnTitle;
-  final String value;
-  final IconData icon;
-  final Color color;
+  String enTitle;
+  String hnTitle;
+  String value;
+  IconData icon;
+  Color color;
 
-  const DashboardData(
-      this.enTitle, this.hnTitle, this.value, this.icon, this.color);
+  DashboardData(this.enTitle, this.hnTitle, this.value, this.icon, this.color);
 }

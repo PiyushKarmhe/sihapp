@@ -5,17 +5,17 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class DbController extends GetxController {
-  late dynamic year;
-  late dynamic program;
-  late dynamic level;
-  late dynamic institutionType;
-  late dynamic state;
-  late dynamic minority;
-  late dynamic women;
-  late dynamic institute;
-  late dynamic student;
-  late dynamic instStat;
-  late dynamic data;
+  dynamic year = [];
+  dynamic program = [];
+  dynamic level = [];
+  dynamic institutionType;
+  dynamic state;
+  dynamic minority;
+  dynamic women;
+  dynamic institute;
+  dynamic student;
+  dynamic instStat;
+  dynamic data;
   Future<void> readJson() async {
     try {
       final String response =
@@ -89,15 +89,24 @@ class DbController extends GetxController {
     // TODO: implement onInit
     await readJson();
     var res = satistics([
-      ["2012-2013"],
-      ["PG"],
       [],
       [],
       [],
       [],
+      ["Architecture"],
       [],
+      []
     ]);
     print(res);
+    print([
+      [],
+      [],
+      [],
+      [],
+      ["Architecture"],
+      [],
+      []
+    ]);
     super.onInit();
   }
 }

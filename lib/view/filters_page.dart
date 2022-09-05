@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -5,6 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/_http/_html/_file_decoder_html.dart';
 import 'package:sih/config/colors.dart';
+import 'package:sih/controller/data_controller.dart';
+import 'package:sih/controller/db_controller.dart';
 import 'package:sih/controller/filter_controller.dart';
 import 'package:sih/view/main_activity.dart';
 import 'package:sih/view/widgets/back_button.dart';
@@ -20,6 +24,8 @@ class FilterPage extends StatefulWidget {
 
 class _FilterPageState extends State<FilterPage> {
   final _filterController = Get.put(FilterController());
+  final _dbController = Get.put(DbController());
+  final _dataController = Get.put(DataController());
   @override
   Widget build(BuildContext context) {
     final totalHeight = MediaQuery.of(context).size.height;
@@ -175,7 +181,31 @@ class _FilterPageState extends State<FilterPage> {
                           _filterController.selectedInstType.toString());
                       print("Selected Program" +
                           _filterController.selectedProgram.toString());
+                      //removeAll();
+                      print([
+                        _filterController.selectedYears.value,
+                        _filterController.selectedLevel.value,
+                        _filterController.selectedState.value,
+                        _filterController.selectedWomen.value,
+                        _filterController.selectedProgram.value,
+                        _filterController.selectedInstType.value,
+                        _filterController.selectedMin.value,
+                      ]);
+
+                      var data = _dbController.satistics([
+                        _filterController.selectedYears,
+                        _filterController.selectedLevel,
+                        _filterController.selectedState,
+                        _filterController.selectedWomen,
+                        _filterController.selectedProgram,
+                        _filterController.selectedInstType,
+                        _filterController.selectedMin
+                      ]);
+                      log("==========DATA=========");
+                      print(data);
+                      _dataController.updateDashBoardData(data);
                     });
+
                     Navigator.pop(context);
                     Navigator.pop(context);
                     Navigator.push(
@@ -189,5 +219,17 @@ class _FilterPageState extends State<FilterPage> {
         ),
       ],
     ));
+  }
+
+  void removeAll() {
+    _filterController.selectedYears.removeWhere((element) => element == 'All');
+    _filterController.selectedProgram
+        .removeWhere((element) => element == 'All');
+    _filterController.selectedLevel.removeWhere((element) => element == 'All');
+    _filterController.selectedInstType
+        .removeWhere((element) => element == 'All');
+    _filterController.selectedState.removeWhere((element) => element == 'All');
+    _filterController.selectedMin.removeWhere((element) => element == 'All');
+    _filterController.selectedWomen.removeWhere((element) => element == 'All');
   }
 }

@@ -15,22 +15,22 @@ class FilterController extends GetxController {
   RxString detailGraphOption = "Year".obs;
 
   List<String> yearList = [
-    "2022-23",
-    "2021-22",
-    "2020-21",
-    "2019-20",
-    "2018-19",
-    "2017-18",
-    "2016-17",
-    "2015-16",
-    "2014-15",
-    "2013-14",
-    "2012-13"
+    "2022-2023",
+    "2021-2022",
+    "2020-2021",
+    "2019-2020",
+    "2018-2019",
+    "2017-2018",
+    "2016-2017",
+    "2015-2016",
+    "2014-2015",
+    "2013-2014",
+    "2012-2013"
   ];
   List<String> programList = <String>[
-    'All',
-    "Applied Arts and Craft",
-    "Architecture and town plan",
+    "All",
+    "Applied Arts and Crafts",
+    "Architecture and Town Planning",
     "Architecture and Planning",
     "Architecture",
     "Planning",
@@ -42,7 +42,7 @@ class FilterController extends GetxController {
     "Pharmacy",
     "Hotel Management and Catering"
   ];
-  List<String> levelList = ["All", "UG", "PG", "Diploma"];
+  List<String> levelList = ["All", "UG", "PG", "DIPLOMA"];
   List<String> instTypeList = [
     "All",
     "Private",
