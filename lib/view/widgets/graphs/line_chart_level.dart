@@ -63,13 +63,13 @@ class _LineGraphState extends State<LineGraph> {
       case 0:
         text = const Text('All', style: style);
         break;
-      case 2:
+      case 4:
         text = const Text('UG', style: style);
         break;
-      case 4:
+      case 8:
         text = const Text('PG', style: style);
         break;
-      case 7:
+      case 12:
         text = const Text('Diploma', style: style);
         break;
       // case 8:
@@ -172,20 +172,20 @@ class _LineGraphState extends State<LineGraph> {
           show: true,
           border: Border.all(color: const Color(0xff37434d), width: 1)),
       minX: 0,
-      maxX: 15, //get list value to divide ratio
+      maxX: 13, //get list value to divide ratio
       minY: 0,
       maxY: 10,
       lineBarsData: [
         LineChartBarData(
           spots: const [
             // spots,
-            FlSpot(0, 6),
+            FlSpot(0, 5.5),
             // FlSpot(1, 4),
-            FlSpot(2, 4.98),
-            FlSpot(4, 6.18),
+            FlSpot(4, 8.98),
+            FlSpot(8, 4.18),
             // FlSpot(5, 3.14),
             // FlSpot(6, 5.23),
-            FlSpot(6.5, 4.1),
+            FlSpot(12, 7.1),
             // FlSpot(7, 8),
             // FlSpot(8, 7),
           ],
