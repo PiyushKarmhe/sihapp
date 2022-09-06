@@ -60,16 +60,16 @@ class _LineGraphState extends State<LineGraph> {
     Widget text;
     //double purpose = divisionMade.toInt()/2;
     switch (divisionMade.toInt()) {
-      case 2:
+      case 0:
         text = const Text('All', style: style);
         break;
-      case 4:
+      case 2:
         text = const Text('UG', style: style);
         break;
-      case 6:
+      case 4:
         text = const Text('PG', style: style);
         break;
-      case 8:
+      case 7:
         text = const Text('Diploma', style: style);
         break;
       // case 8:
@@ -179,14 +179,15 @@ class _LineGraphState extends State<LineGraph> {
         LineChartBarData(
           spots: const [
             // spots,
-            // FlSpot(0, 6),
+            FlSpot(0, 6),
             // FlSpot(1, 4),
-            FlSpot(2, 5.98),
+            FlSpot(2, 4.98),
             FlSpot(4, 6.18),
             // FlSpot(5, 3.14),
-            FlSpot(6, 5.23),
+            // FlSpot(6, 5.23),
+            FlSpot(6.5, 4.1),
             // FlSpot(7, 8),
-            FlSpot(8, 7),
+            // FlSpot(8, 7),
           ],
           isCurved: true,
           gradient: LinearGradient(
